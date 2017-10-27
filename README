@@ -1,0 +1,33 @@
+
+# gaDataFetcher
+
+This is a bootstrap utility to quickly fetch call google analytics apis with access_token and pre-defined ga:id list
+
+## Installation
+
+Install Vagrant
+Install Virtual box
+Modify Vagrant.config to sync the gaDataFetcher folder
+
+
+## Usage
+
+Run below "Call Views (Profiles):list" command to fetch all cma ga ids
+  https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles/list
+Parse above json results through jsonpath.com/? to get the id list, then copy them into the input.csv
+Run a Query through below page, find the access token at the bottem of the site and use it to update the value of ga.access_token inside /grails-app/conf/application.yml
+// https://ga-dev-tools.appspot.com/query-explorer/
+Run the grails app with below command
+  grails run-app
+Open localhost:8070/dbconsole, fill out below fields:
+Driver Class: org.h2.Driver
+JDBC URL: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+User Name: sa
+Password:[empty]
+
+Run below script to export db data to 'output.csv'
+  call csvwrite ('output.csv', 'SELECT * FROM DEVICE_OS_USERS ')
+
+
+
+TODO: Write license
