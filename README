@@ -17,6 +17,8 @@ This is a bootstrap utility to quickly call google analytics apis with an access
 1, Run below "Call Views (Profiles):list" command to fetch all cma ga ids
    https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles/list
 
+   you will need to set the startIndex and other params, run the query a couple of times to get the entire ga id list
+
 2, Parse above json results through jsonpath.com/? to get the id list, then copy them into the input.csv
 
 3, Run a Query through below page, find the access token at the bottem of the site and use it to update the value of ga.access_token inside /grails-app/conf/application.yml
@@ -25,7 +27,8 @@ This is a bootstrap utility to quickly call google analytics apis with an access
 4, Run 'Vagrant ssh' through a terminal window
 
 5, Run the grails app with below command inside the terminal
-   grails run-app
+	cd /gaDataFetcher
+   	grails run-app
 
 6, Open localhost:8070/dbconsole on your host machine, fill out below fields:
 Driver Class: org.h2.Driver
